@@ -8,13 +8,18 @@ const styles={
 const UserDetails = props => {
     const arrWithUsers = props.usersData || []
     const currentUserEmail = props.match.params.email
-    const currentUserData = arrWithUsers.filter((el) => el.email === currentUserEmail)
+    //const currentUserData = arrWithUsers.filter((el) => el.email === currentUserEmail)[0]
+    const currentUserData = arrWithUsers.find((el) => el.email === currentUserEmail)
+  //FUNKCJA FIND ZAMIAST FILTER!
 
     return (
         <div>
-            {props.match.params.email}
+
             {
-                JSON.stringify(currentUserData)
+                currentUserData ?
+                    <div>{currentUserData.name.first}</div>
+                    :
+                    'No user in database'
             }
         </div>
     )
